@@ -6,7 +6,7 @@ from flask import jsonify, abort
 from config.constants import *
 from app.utilities.mongoDB import connectMongo, closeMongo
 
-@app.route('/getAllUser', methods = ['GET'])
+@app.route('/v1/getAllUser', methods = ['GET'])
 def getOneUser():
     try:
         client, db, collection = connectMongo(MONGO_URI, DATABASE, CUSTOMER_COLLECTION)

@@ -4,7 +4,7 @@ from config.constants import *
 from flask import jsonify, abort, request
 from app.utilities.mongoDB import connectMongo, closeMongo
 
-@app.route('/deleteOneUser/', methods = ['DELETE'])
+@app.route('/v1/deleteOneUser/', methods = ['DELETE'])
 def deleteOneUser():
     userId = request.args.get('userId')
     client, db, collection = connectMongo(MONGO_URI, DATABASE, CUSTOMER_COLLECTION)
