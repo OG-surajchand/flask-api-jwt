@@ -3,7 +3,7 @@ from flask import request, jsonify
 from config.constants import *
 from app.utilities.mongoDB import connectMongo, closeMongo
 
-@app.route('/createOneUser', methods = ['POST'])
+@app.route('/v1/createOneUser', methods = ['POST'])
 def createOneUser():
     client, db, collection = connectMongo(MONGO_URI, DATABASE, CUSTOMER_COLLECTION)
 
