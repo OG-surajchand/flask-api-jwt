@@ -1,5 +1,4 @@
 Flask
 pymongo
 Flask-Cors
-Flask-JWT
-Werkzeug
+Flask-JWT-Extended

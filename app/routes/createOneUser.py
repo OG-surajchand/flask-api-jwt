@@ -9,18 +9,19 @@ def createOneUser():
 
     sourcePayload = request.get_json()
     try:
-        targetPayload = {
-            "first_name": sourcePayload['first_name'],
-            "last_name": sourcePayload['last_name'],
-            "phone_number": sourcePayload['phone_number'],
-            "designation": sourcePayload['designation'],
-            "start_date": sourcePayload['start_date'],
-            "end_date": sourcePayload['end_date']
-        }
         alreadyExisting = collection.find_one(targetPayload)
         if alreadyExisting:
             return jsonify({"message": "The record already exists."})
+        
         else:
+            targetPayload = {
+                "first_name": sourcePayload['first_name'],
+                "last_name": sourcePayload['last_name'],
+                "phone_number": sourcePayload['phone_number'],
+                "designation": sourcePayload['designation'],
+                "start_date": sourcePayload['start_date'],
+                "end_date": sourcePayload['end_date']
+            }
             result = collection.insert_one(targetPayload)
             return jsonify({"created_user_id": int(str(result.inserted_id), 16)})
     

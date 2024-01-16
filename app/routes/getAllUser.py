@@ -2,10 +2,10 @@ import json
 import app.utilities.utils as utils
 
 from app import app
-from flask_jwt import JWT, jwt_required, current_identity
 from flask import jsonify, abort
 from config.constants import *
 from app.utilities.mongoDB import connectMongo, closeMongo
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 @app.route('/v1/getAllUser', methods = ['GET'])
 @jwt_required()
