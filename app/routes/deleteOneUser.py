@@ -3,9 +3,20 @@ from bson import ObjectId
 from config.constants import *
 from flask import jsonify, abort, request
 from app.utilities.mongoDB import connectMongo, closeMongo
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 @app.route('/v1/deleteOneUser/', methods = ['DELETE'])
+@jwt_required()
 def deleteOneUser():
+    currentUser = get_jwt_identity()
+    for user in USER_LIST:
+        if currentUser == user.get('username'):
+            assignedRole = user.get('roles')
+    
+    if assignedRole not in WRITE_ROLES:
+        abort(403)
+        
     userId = request.args.get('userId')
     client, db, collection = connectMongo(MONGO_URI, DATABASE, CUSTOMER_COLLECTION)
 
